@@ -9,7 +9,9 @@ import { get as getProjection } from "ol/proj";
 
 const maskLayer = new VectorLayer({
   source: new VectorSource(),
-  style: new Style({ fill: new Fill({ color: "rgba(255,255,255,1)" }) }),
+  style: new Style({
+    fill: new Fill({ color: "rgba(9, 21, 41, 0.88)" }),
+  }),
 });
 maskLayer.setZIndex(99);
 

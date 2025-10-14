@@ -1,26 +1,27 @@
 import React from 'react';
 
-interface ButtonProps {
-    onClick?: () => void;
+type ButtonVariant = "primary" | "secondary" | "ghost";
+
+type ButtonElement = React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+interface ButtonProps extends Omit<ButtonElement, "className" | "type"> {
     children: React.ReactNode;
     className?: string;
+    variant?: ButtonVariant;
+    type?: "button" | "submit" | "reset";
 }
 
 const Button: React.FC<ButtonProps> = ({
-    onClick,
     children,
-    className = ''
+    className = "",
+    variant = "primary",
+    type = "button",
+    ...rest
 }) => {
-    const baseClasses = 'btn';
-    const classes = [baseClasses, className]
-        .filter(Boolean)
-        .join(' ');
+    const classes = ["btn", `btn--${variant}`, className].filter(Boolean).join(" ");
 
     return (
-        <button
-            className={classes}
-            onClick={onClick}
-        >
+        <button className={classes} type={type} {...rest}>
             {children}
         </button>
     );
